@@ -8,6 +8,7 @@ function Login() {
         password: ''
     })
     const navigate = useNavigate();
+    axios.defaults.withCredentials = true;
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.post('http://localhost:5002/login', values)
@@ -15,7 +16,7 @@ function Login() {
                 if (res.data.Status === "Success") {
                     navigate('/')
                 } else {
-                    alert("Error")
+                    alert(res.data.Error)
                 }
             })
             .then(err => {
